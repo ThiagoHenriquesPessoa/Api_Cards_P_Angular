@@ -39,7 +39,7 @@ namespace Cards.API.Controllers
             card.Id = Guid.NewGuid();
             await _context.Cards.AddAsync(card);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetCard), card.Id, card);
+            return CreatedAtAction(nameof(GetCard), new { id = card.Id}, card);
         }
 
         [HttpPut]
