@@ -24,7 +24,7 @@ namespace Cards.API.Controllers
         }
 
         [HttpGet]
-        [Route("id:guid")]
+        [Route("{id:guid}")]
         [ActionName("GetCard")]
         public async Task<IActionResult> GetCard([FromRoute] Guid id)
         {
@@ -43,11 +43,11 @@ namespace Cards.API.Controllers
         }
 
         [HttpPut]
-        [Route("id:guid")]
+        [Route("{id:guid}")]
         public async Task<IActionResult> UpdsteCard([FromRoute] Guid id, [FromBody] Card card)
         {
             var _card = await _context.Cards.FirstOrDefaultAsync(x => x.Id == id);
-            if(_card != null)
+            if (_card != null)
             {
                 _card.CardHolderName = card.CardHolderName;
                 _card.CardNumber = card.CardNumber;
@@ -62,7 +62,7 @@ namespace Cards.API.Controllers
         }
 
         [HttpDelete]
-        [Route("id:guid")]
+        [Route("{id:guid}")]
         public async Task<IActionResult> DeleteCard([FromRoute] Guid id)
         {
             var card = await _context.Cards.FirstOrDefaultAsync(x => x.Id == id);
